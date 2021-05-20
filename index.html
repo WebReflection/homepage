@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="author" content="Andrea Giammarchi, @webreflection">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>My Webpage - Andrea Giammarchi</title>
+        <script>
+        // I could use jQuery $(...) but that's not fun
+        document.addEventListener('DOMContentLoaded', () => {
+
+          // decorate the jumbotron with some fancy animation
+          const jumbotron = document.querySelector('.jumbotron');
+          const canvas = document.createElement('canvas');
+          jumbotron.insertBefore(canvas, jumbotron.firstChild);
+
+          // enforce canvas size (HiDPi compatible)
+          const dPR = window.devicePixelRatio || 1;
+
+          // adjust canvas on resize (or before first paint)
+          function resize() {
+            // drop explicit values
+            canvas.width = null;
+            canvas.height = null;
+            // to force recalculate these
+            canvas.width = canvas.offsetWidth * dPR;
+            canvas.height = canvas.offsetHeight * dPR;
+          }
+          // add resize listener to the window
+          addEventListener('resize', resize);
+
+          // get the context and set its default style
+          const context = canvas.getContext('2d');
+
+          // repeat without stressing, if possible
+          const next = window.requestIdleCallback || requestAnimationFrame;
+
+          // draw squares behind the scene
+          const size = 32 * dPR;
+          const increment = 0.5;
+          const squares = new Map;
+          function drawSquare() {
+            next(drawSquare);
+            const width = canvas.width + size;
+            const height = canvas.height + size;
+            context.clearRect(0, 0, width, height);
+            for (let x = 0; x < width; x += size) {
+              for (let y = 0; y < height; y += size) {
+                // define each square uniquely
+                const squareName = `${x},${y}`;
+
+                // create once a square if not known yet
+                if (!squares.has(squareName)) {
+                  // squares are just references with a size, an opacity,
+                  // and a delay to wait for before start changing properties
+                  squares.set(squareName, {
+                    size: 0,
+                    opacity: 100,
+                    delay: Math.ceil(Math.random() * 1000)
+                  });
+                }
+
+                // get the square and ...
+                const square = squares.get(squareName);
+                // if waiting, decrease delay until it's 0
+                if (0 < square.delay)
+                  square.delay--;
+                // otherwise draw this square
+                else {
+                  // set a new style per each square based on opacity
+                  context.fillStyle = `rgba(255,255,255,${square.opacity / 100})`;
+
+                  // calculate the current size and the diff from the x/y
+                  square.size = Math.min(square.size + increment, size);
+                  const diff = (size - square.size) / 2;
+                  // draw the square
+                  context.fillRect(x + diff, y + diff, square.size, square.size);
+                  // if max sized, fade out
+                  if (square.size === size && square.opacity > 0)
+                    square.opacity--;
+                  // otherwise if it's faded out, reset
+                  else if (square.opacity === 0) {
+                    square.size = 0;
+                    square.opacity = 100;
+                  }
+                }
+              }
+            }
+          }
+
+          // let's the show begin
+          resize();
+          drawSquare();
+        });
+        </script>
+    </head>
+    <body>
+      <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <span class="navbar-brand">Home</span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="bio.html">Bio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="interests.html">Interests</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="open-source.html">Open Source</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">Andrea Giammarchi</h1>
+            <p class="lead">An introduction to myself, my interests, and my Open Source contributions.</p>
+          </div>
+        </div>
+        <section id="summary">
+          <div class="card" style="width: 18rem;">
+            <img src="img/me-bio.jpg" class="card-img-top" alt="bio" height="180">
+            <div class="card-body">
+              <h5 class="card-title">Bio</h5>
+              <p class="card-text">Feel free to find more details about me in this section.</p>
+              <a href="bio.html" class="btn btn-primary">My biography</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <img src="img/me-interests.jpg" class="card-img-top" alt="interests" height="180">
+            <div class="card-body">
+              <h5 class="card-title">Interests</h5>
+              <p class="card-text">Curious to know what I do when I am not working?</p>
+              <a href="interests.html" class="btn btn-primary">My interestes</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <img src="img/me-open-source.jpg" class="card-img-top" alt="open source" height="180">
+            <div class="card-body">
+              <h5 class="card-title">Open Source</h5>
+              <p class="card-text">A curated lists of projects I am maintaning.</p>
+              <a href="open-source.html" class="btn btn-primary">My Open Source</a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="container-sm">
+        <h6>&copy; Andrea Giammarchi</h6>
+      </footer>
+    </body>
+</html>

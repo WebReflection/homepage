@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="author" content="Andrea Giammarchi, @webreflection">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <title>My Webpage - Open Source</title>
+    </head>
+    <body>
+      <header class="bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <span class="navbar-brand">Open Source</span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="bio.html">Bio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="interests.html">Interests</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="open-source.html">Open Source <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <section>
+          <hr>
+          <p>
+            Following a list of my most recent Open Source projects.
+          </p>
+          <hr>
+          <div class="media">
+            <span class="mr-3 emoji">🔬</span>
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://github.com/WebReflection/uhtml#readme"><small>(micro)</small> µhtml</a></h5>
+              A minimalistic, template literals based, <em>HTML</em> rendering engine, with amazing performance and extreme ease of use.
+            </div>
+          </div>
+          <hr>
+          <div class="media">
+            <span class="mr-3 emoji">🧲</span>
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://github.com/WebReflection/uhooks#readme"><small>(micro)</small> µhooks</a></h5>
+              A <em><a href="https://reactjs.org/docs/hooks-intro.html">React</a>-like</em> library under 1KB that delivers hooks as general purpose pattern for any sort of client/server application, including Espruino boards.
+            </div>
+          </div>
+          <hr>
+          <div class="media">
+            <span class="mr-3 emoji">🏝</span>
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://github.com/WebReflection/uland#readme"><small>(micro)</small> µland</a></h5>
+              Following the <small>micro</small> serie, this library combines hooks and micro-html in a components driven way, fully compatible with its <abbr title="Server Side Rendering">SSR</abbr> <a href="https://github.com/WebReflection/uland-ssr#readme">counterpart</a>.
+            </div>
+          </div>
+          <hr>
+          <div class="media">
+            <span class="mr-3 emoji">🔗</span>
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://github.com/WebReflection/uland#readme">LinkeDOM</a></h5>
+              This project is about a triple-linked list based <em>DOM</em> environment, including <code>MutationObserver</code> and <code>Custom Elements Registry</code> for Web workers, <em>SSR</em>, NodeJS, or anything else where some <em>DOM</em> operation, or manipulation, is needed.
+              Peculiarity of this approach is that it's 20x faster than <em>JSDOM</em>, and much lighter on the <em>heap</em>.
+            </div>
+          </div>
+          <hr>
+          <div class="media">
+            <span class="mr-3 emoji">🌈</span>
+            <div class="media-body">
+              <h5 class="mt-0"><a href="https://github.com/WebReflection">And more ...</a></h5>
+              Feel free to check my <em>GitHub</em> profile to discover even more projects I've published during these years.
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="container-sm">
+        <h6>&copy; Andrea Giammarchi</h6>
+      </footer>
+    </body>
+</html>

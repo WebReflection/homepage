@@ -1,0 +1,72 @@
+nav, .jumbotron > .container, section {
+  margin: auto;
+  max-width: 720px;
+}
+
+.jumbotron, .jumbotron *:not(canvas) {
+  position: relative;
+}
+
+.jumbotron canvas {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-brand {
+  min-width: 160px;
+}
+
+#summary {
+  max-width: 960px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#intro {
+  display: flex;
+  padding: 16px;
+}
+
+#intro .round-wrapper {
+  border-radius: 50%;
+  max-width: 180px;
+  max-height: 180px;
+  overflow: hidden;
+  border: 4px solid var(--info);
+}
+
+.media {
+  padding: 16px;
+  transition: background 0.3s;
+}
+
+.media:hover {
+  background-color: var(--light);
+}
+
+span.emoji {
+  font-size: xx-large;
+}
+
+footer {
+  margin-top: 32px;
+  padding: 16px;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  #summary, #intro {
+      flex-direction: column;
+  }
+
+  #summary .card {
+      margin: auto;
+      margin-top: 16px;
+  }
+
+  p {
+      padding: 8px;
+  }
+}
